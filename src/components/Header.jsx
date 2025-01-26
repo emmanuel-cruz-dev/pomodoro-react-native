@@ -15,9 +15,12 @@ export default function Header({ setTime, currentTime, setCurrentTime }) {
         <TouchableOpacity
           key={index}
           onPress={() => handlePress(index)}
-          style={[styles.itemStyle]}
+          style={[
+            styles.itemStyle,
+            currentTime !== index && { borderColor: "transparent" },
+          ]}
         >
-          <Text>{item}</Text>
+          <Text style={{ fontWeight: "bold" }}>{item}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -27,7 +30,11 @@ export default function Header({ setTime, currentTime, setCurrentTime }) {
 const styles = StyleSheet.create({
   itemStyle: {
     width: "33%",
+    alignItems: "center",
     borderWidth: 3,
     padding: 5,
+    borderRadius: 10,
+    borderColor: "white",
+    marginVertical: 20,
   },
 });

@@ -10,7 +10,9 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "BREAK");
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: colors[currentTime] }]}
+    >
       <View style={{ paddingTop: Platform.OS === "android" && 30 }}>
         <Text style={styles.text}>Pomodoro</Text>
         <Text style={styles.text}>{time}</Text>
