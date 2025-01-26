@@ -1,4 +1,11 @@
-import { StyleSheet, Platform, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Platform,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import { useState } from "react";
 import Header from "./src/components/Header";
 import Timer from "./src/components/Timer";
@@ -9,6 +16,11 @@ export default function App() {
   const [isWorking, setIsWorking] = useState(false);
   const [time, setTime] = useState(25 * 60);
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "BREAK");
+  const [isActive, setIsActive] = useState(false);
+
+  function handleStartStop() {
+    setIsActive(!isActive);
+  }
 
   return (
     <SafeAreaView
@@ -28,6 +40,11 @@ export default function App() {
           setCurrentTime={setCurrentTime}
         />
         <Timer time={time} />
+        <TouchableOpacity onPress={handleStartStop} style={styles.button}>
+          <Text style={{ color: "white", fontWeight: "bold" }}>
+            {isActive ? "STOP" : "START"}
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -40,5 +57,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 32,
     fontWeight: "bold",
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#333333",
+    padding: 15,
+    marginTop: 15,
+    borderRadius: 15,
   },
 });
