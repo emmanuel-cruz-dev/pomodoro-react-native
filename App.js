@@ -1,6 +1,7 @@
 import { StyleSheet, Platform, Text, View, SafeAreaView } from "react-native";
 import { useState } from "react";
 import Header from "./src/components/Header";
+import Timer from "./src/components/Timer";
 
 const colors = ["#F7DC6F", "#A2D9CE", "#D7BDE2"];
 
@@ -13,14 +14,20 @@ export default function App() {
     <SafeAreaView
       style={[styles.container, { backgroundColor: colors[currentTime] }]}
     >
-      <View style={{ paddingTop: Platform.OS === "android" && 30 }}>
+      <View
+        style={{
+          flex: 1,
+          paddingHorizontal: 15,
+          paddingTop: Platform.OS === "android" && 30,
+        }}
+      >
         <Text style={styles.text}>Pomodoro</Text>
-        <Text style={styles.text}>{time}</Text>
         <Header
           setTime={setTime}
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
         />
+        <Timer time={time} />
       </View>
     </SafeAreaView>
   );
