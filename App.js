@@ -1,5 +1,6 @@
 import { StyleSheet, Platform, Text, View, SafeAreaView } from "react-native";
 import { useState } from "react";
+import Header from "./src/components/Header";
 
 const colors = ["#F7DC6F", "#A2D9CE", "#D7BDE2"];
 
@@ -13,6 +14,8 @@ export default function App() {
       <View style={{ paddingTop: Platform.OS === "android" && 30 }}>
         <Text style={styles.text}>Pomodoro</Text>
         <Text style={styles.text}>{time}</Text>
+
+        <Header time={time} />
       </View>
     </SafeAreaView>
   );
