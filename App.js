@@ -36,23 +36,6 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isActive, time, isWorking]);
 
-  //   if (isActive) {
-  //     interval = setInterval(() => {
-  //       setTime(time - 1);
-  //     }, 1000);
-  //   } else {
-  //     clearInterval(interval);
-  //   }
-
-  //   if (time === 0) {
-  //     setIsActive(false);
-  //     setIsWorking((prev) => !prev);
-  //     setTime(isWorking ? 300 : 1500);
-  //   }
-
-  //   return () => clearInterval(interval);
-  // }, [isActive, time]);
-
   function handleStartStop() {
     playSound();
     setIsActive(!isActive);
