@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./src/components/Header";
 import Timer from "./src/components/Timer";
 import { Audio } from "expo-av";
@@ -19,13 +19,48 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "BREAK");
   const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    let interval = null;
+
+    if (isActive && time > 0) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (time === 0) {
+      clearInterval(interval);
+      setIsActive(false);
+      setIsWorking((prev) => !prev);
+      setTime(isWorking ? 300 : 1500);
+    }
+
+    return () => clearInterval(interval);
+  }, [isActive, time, isWorking]);
+
+  //   if (isActive) {
+  //     interval = setInterval(() => {
+  //       setTime(time - 1);
+  //     }, 1000);
+  //   } else {
+  //     clearInterval(interval);
+  //   }
+
+  //   if (time === 0) {
+  //     setIsActive(false);
+  //     setIsWorking((prev) => !prev);
+  //     setTime(isWorking ? 300 : 1500);
+  //   }
+
+  //   return () => clearInterval(interval);
+  // }, [isActive, time]);
+
   function handleStartStop() {
+    playSound();
     setIsActive(!isActive);
   }
 
   async function playSound() {
     const { sound } = await Audio.Sound.createAsync(
-      require("./assets/click.mp3")
+      require("./assets/button-pressed.mp3")
     );
     await sound.playAsync();
   }
