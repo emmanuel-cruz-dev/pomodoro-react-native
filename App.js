@@ -14,8 +14,11 @@ export default function App() {
       <View style={{ paddingTop: Platform.OS === "android" && 30 }}>
         <Text style={styles.text}>Pomodoro</Text>
         <Text style={styles.text}>{time}</Text>
-
-        <Header time={time} />
+        <Header
+          setTime={setTime}
+          currentTime={currentTime}
+          setCurrentTime={setCurrentTime}
+        />
       </View>
     </SafeAreaView>
   );
