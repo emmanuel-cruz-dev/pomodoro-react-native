@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import Header from "./src/components/Header";
 import Timer from "./src/components/Timer";
+import { Audio } from "expo-av";
 
 const colors = ["#F7DC6F", "#A2D9CE", "#D7BDE2"];
 
@@ -20,6 +21,13 @@ export default function App() {
 
   function handleStartStop() {
     setIsActive(!isActive);
+  }
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync(
+      require("./assets/click.mp3")
+    );
+    await sound.playAsync();
   }
 
   return (
