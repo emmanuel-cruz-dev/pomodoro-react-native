@@ -20,7 +20,7 @@ export default function Header({ setTime, currentTime, setCurrentTime }) {
             currentTime !== index && { borderColor: "transparent" },
           ]}
         >
-          <Text style={{ fontWeight: "bold" }}>{item}</Text>
+          <Text style={{ fontWeight: "bold", fontSize: 18 }}>{item}</Text>
         </TouchableOpacity>
       ))}
     </View>
