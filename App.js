@@ -67,7 +67,7 @@ export default function App() {
         />
         <Timer time={time} />
         <TouchableOpacity onPress={handleStartStop} style={styles.button}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>
+          <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>
             {isActive ? "STOP" : "START"}
           </Text>
         </TouchableOpacity>
