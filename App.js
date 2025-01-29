@@ -19,6 +19,12 @@ export default function App() {
   const [currentTime, setCurrentTime] = useState("POMO" | "SHORT" | "BREAK");
   const [isActive, setIsActive] = useState(false);
 
+  const optionsTimes = {
+    0: 25,
+    1: 5,
+    2: 15,
+  };
+
   useEffect(() => {
     let interval = null;
 
@@ -30,7 +36,7 @@ export default function App() {
       clearInterval(interval);
       setIsActive(false);
       setIsWorking((prev) => !prev);
-      setTime(isWorking ? 300 : 1500);
+      setTime(optionsTimes[currentTime] * 60);
     }
 
     return () => clearInterval(interval);
